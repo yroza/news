@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:news/constant/endpoint.dart';
 
@@ -33,16 +35,22 @@ Future getSearchData(String key) async {
   return response;
 }
 
-Future getHomeData(int index) async {
+Future getHomeData(int index, int page) async {
 //  Map<String, dynamic> data;
   Response response;
+  List _val;
   try {
-    response = await Dio().get(Endpoint.category,
-        queryParameters: {"categories": index, "per_page": 10, "page": 1});
+    response = await Dio().get(Endpoint.category, queryParameters: {
+      "categories": index,
+      "per_page": 10,
+      "page": page
+    }) as Response;
+    _val = response.data;
+    print('...>>${_val}');
 //    data = response.data;
-    print(' Category.. DATA : >> ${response.data[0]['date']}');
+//    print(' Category.. DATA : >> ${response.data[0]['date']}');
   } catch (e) {
     print(e);
   }
-  return response;
+  return _val;
 }

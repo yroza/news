@@ -24,7 +24,7 @@ class homeState extends State<Home> with SingleTickerProviderStateMixin {
     setState(() {
       index = widget.initialIndex;
     });
-    print(widget.initialIndex);
+//    print(widget.initialIndex);
     _controller =
         new TabController(length: 5, vsync: this, initialIndex: index ?? 0);
   }
